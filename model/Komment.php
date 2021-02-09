@@ -14,7 +14,7 @@ class Komment {
      * @param User $szerzo
      * @param Poszt $poszt
      */
-    public function __construct(string $id, string $tartalom, ?User $szerzo = null, ?Poszt $poszt = null)
+    public function __construct(string $id = '', string $tartalom = '', ?User $szerzo = null, ?Poszt $poszt = null)
     {
         $this->id = $id;
         $this->tartalom = $tartalom;
