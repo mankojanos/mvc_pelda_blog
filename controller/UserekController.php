@@ -71,7 +71,7 @@ class UserekController extends AlapController {
         $this->view->setValtozo('user', $user);
         $this->view->render('userek', 'regisztracio');
     }
-    
+
     public function kilep() {
         session_destroy();
         $this->view->atiranyitas('userek', 'belep');
