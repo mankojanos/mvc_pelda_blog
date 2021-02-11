@@ -74,7 +74,7 @@ class Routing {
         if($this->cors) {
             header('Acces-Control-Allow-Origin', $this->allowedOrigin);
             header('Acces-Control-Allow-Headers', $this->acah);
-            header('Acces-Control-Allow-Methods', implode(',', $tamogatottMetodika . ',OPTIONS'));
+            header('Acces-Control-Allow-Methods', implode(',', $tamogatottMetodika . ',OPTION'));
             return true;
         }
 
