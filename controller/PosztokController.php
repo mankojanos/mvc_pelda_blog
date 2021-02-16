@@ -110,7 +110,7 @@ class PosztokController extends AlapController {
         }
 
         if(filter_input(INPUT_POST, 'submit')) {
-            $poszt->setCim(filter_input(, 'cim', FILTER_SANITIZE_SPECIAL_CHARS));
+            $poszt->setCim(filter_input(INPUT_POST, 'cim', FILTER_SANITIZE_SPECIAL_CHARS));
             $poszt->setTartalom(filter_input(INPUT_POST, 'tartalom', FILTER_SANITIZE_SPECIAL_CHARS));
             try{
                 $poszt->posztEllenorzese();
