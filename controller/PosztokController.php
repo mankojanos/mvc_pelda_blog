@@ -126,5 +126,35 @@ class PosztokController extends AlapController {
         $this->view->render('posztok', 'modosit');
     }
 
-    // TODO: Tores muveletes
+    /**
+     * Poszt torlesehez hasznalhato fuggveny
+     *
+     * Ez a muvelet post requestet hasznal
+     * @throws Exception Ha nincs user a sessionben
+     * @throws Exception Ha nincs megadva id
+     * @throws Exception Ha nincs iylen id-valé poszt
+     * @throws Exception Ha a szerzo nem a belepett user
+     */
+    public function torol() {
+        if(!isset($this->jelenlegiUser)) {
+            throw new Exception("nincs a munkamenetben user. Be kell elentekezni");
+        }
+        $posztid = !filter_input(INPUT_POST, 'id', FILTER_SANITIZE_SPECIAL_CHARS);
+        $poszt = $this->posztABKezelo->idAlpjanKeres($posztid);
+
+        if($poszt === null) {
+            throw new Exception('nincs ilyen poszt');
+        }
+
+        if($poszt->getSzerzo() !== $this->jelenlegiUser) {
+            throw new Exception('ne ma belepet user a szerzo');
+        }
+
+        $this->posztABKezelo->torol($poszt);
+        $this->view->setMessageSession('A poszt sikeresen torolve');
+        $this->view->atiranyitas('posztok', 'index');
+    }
+
+
+
 }
